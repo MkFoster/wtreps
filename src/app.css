@@ -1,0 +1,158 @@
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #172e28;
+  background: #f7f8f5;
+  font-synthesis: none;
+  --color-background: #f7f8f5;
+  --color-surface: #fff;
+  --color-text: #172e28;
+  --color-muted: #4d6059;
+  --color-accent: #173d35;
+  --color-accent-soft: #e2ede7;
+  --color-border: #c7d1c9;
+  --font-size-body: 1.125rem;
+  --font-size-large: 1.5rem;
+  --font-size-exercise-title: 2rem;
+  --font-size-workout-number: 2.25rem;
+  --touch-target-min: 48px;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --radius-md: 0.75rem;
+  font-size: 100%;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-size: var(--font-size-body);
+  line-height: 1.5;
+}
+a {
+  color: var(--color-accent);
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+button {
+  min-height: var(--touch-target-min);
+  padding: var(--space-sm) var(--space-lg);
+  background: var(--color-accent);
+  color: white;
+  border: 0;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+:focus-visible {
+  outline: 3px solid #ab4b00;
+  outline-offset: 4px;
+}
+.app-shell {
+  max-width: 700px;
+  margin-inline: auto;
+}
+.app-header {
+  padding: max(var(--space-lg), env(safe-area-inset-top))
+    max(var(--space-lg), env(safe-area-inset-right)) var(--space-lg)
+    max(var(--space-lg), env(safe-area-inset-left));
+}
+.app-header a {
+  font-size: var(--font-size-large);
+  font-weight: 800;
+  text-decoration: none;
+}
+main {
+  padding: var(--space-lg) max(var(--space-lg), env(safe-area-inset-right))
+    calc(7rem + env(safe-area-inset-bottom)) max(var(--space-lg), env(safe-area-inset-left));
+}
+h1 {
+  margin: 0 0 var(--space-lg);
+  font-size: var(--font-size-exercise-title);
+  line-height: 1.2;
+}
+p {
+  margin: 0 0 var(--space-lg);
+}
+.storage-note {
+  color: var(--color-muted);
+}
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: var(--space-md);
+  padding: var(--space-md);
+  background: white;
+  z-index: 2;
+  clip-path: inset(50%);
+}
+.skip-link:focus {
+  top: var(--space-md);
+  clip-path: none;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  min-height: var(--touch-target-min);
+  border: 1px solid #7a8d82;
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+textarea {
+  resize: vertical;
+}
+label {
+  font-weight: 600;
+}
+button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+.secondary {
+  color: var(--color-accent);
+  background: var(--color-accent-soft);
+}
+.danger {
+  background: #9c2626;
+}
+.destructive-secondary {
+  background: transparent;
+  color: #9c2626;
+  border: 1px solid #9c2626;
+}
+.button-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  color: white;
+  background: var(--color-accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-target-min);
+  margin-bottom: var(--space-md);
+}
+.error-banner {
+  color: #7f2020;
+  background: #fceeee;
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+}
+.success-message {
+  background: var(--color-accent-soft);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+}

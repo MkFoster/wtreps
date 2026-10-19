@@ -1,0 +1,51 @@
+{
+  "name": "wtreps",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.17"
+  },
+  "imports": {
+    "#lib/*": "./src/lib/*"
+  },
+  "scripts": {
+    "prepare": "svelte-kit sync",
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "sirv build --single 200.html --host 127.0.0.1 --port 4173",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "lint": "prettier --check .",
+    "format": "prettier --write .",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "dexie": "^4.0.0",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@sveltejs/adapter-static": "^4.0.0",
+    "@sveltejs/kit": "^3.1.0",
+    "@sveltejs/vite-plugin-svelte": "^7.0.0",
+    "@types/node": "^22.0.0",
+    "@vite-pwa/sveltekit": "1.1.0",
+    "fake-indexeddb": "^6.0.0",
+    "prettier": "^3.0.0",
+    "prettier-plugin-svelte": "^3.0.0",
+    "sirv-cli": "^3.0.1",
+    "svelte": "^5.57.2",
+    "svelte-check": "^4.0.0",
+    "typescript": "^6.0.0",
+    "vite": "^8.3.4",
+    "vite-plugin-pwa": "^1.2.0",
+    "vitest": "^5.0.5"
+  },
+  "overrides": {
+    "@vite-pwa/sveltekit": {
+      "@sveltejs/kit": "$@sveltejs/kit"
+    }
+  }
+}

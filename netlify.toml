@@ -1,0 +1,21 @@
+[build]
+  command = "npm run build"
+  publish = "build"
+
+[build.environment]
+  NODE_VERSION = "22.23.3"
+
+[[redirects]]
+  from = "/*"
+  to = "/200.html"
+  status = 200
+
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/200.html"
+  [headers.values]
+    Cache-Control = "no-cache"

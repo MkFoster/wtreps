@@ -1,0 +1,11 @@
+node_modules/
+.tools/
+.svelte-kit/
+build/
+coverage/
+test-results/
+playwright-report/
+package-lock.json
+AGENTS.md
+docs/
+netlify.toml
