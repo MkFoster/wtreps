@@ -18,6 +18,7 @@ npm run check       # Strict TypeScript and Svelte diagnostics
 npm run lint        # Prettier formatting checks
 npm test           # Vitest persistence tests with isolated fake IndexedDB databases
 npm run build      # Static application and generated service worker in build/
+npm run verify     # Formatting, type checks, unit tests, and production build
 npm run preview    # Preview the production build
 ```
 
@@ -56,7 +57,7 @@ use empty strings; absent overrides, completion times, and export times use `nul
 
 ## Static deployment and offline behavior
 
-Netlify runs `npm run build` and publishes `build/` using `netlify.toml`.
+Netlify runs `npm run verify` and publishes `build/` using `netlify.toml`.
 The static adapter produces `200.html`; Netlify rewrites route requests to that shell.
 `npm run preview` serves these final static files with the same fallback rather than
 SvelteKit's intermediate preview output, so the generated service worker is available.
@@ -68,6 +69,33 @@ The first visit requires connectivity; offline launch works after successful cac
 Only application assets enter Cache Storage. Domain records remain in IndexedDB.
 Updates wait rather than force-reloading an open application. A user-controlled update
 flow that checks active workouts belongs in subsequent feature development.
+
+### Deploy to Netlify
+
+1. Commit and push the repository, including `package-lock.json`, `.nvmrc`, and
+   `netlify.toml`. Connect that Git repository to a Netlify project.
+2. Use the repository root as the base directory, `npm run verify` as the build
+   command, and `build` as the publish directory. The committed configuration pins
+   Node 22.23.3 and includes development dependencies needed by the build checks.
+3. No environment secrets, Functions, Edge Functions, database, or additional
+   framework adapter are needed. Keep the existing static adapter configuration.
+4. Deploy, then open the HTTPS site and reload a deep link such as `/settings`.
+   Confirm `/sw.js` returns JavaScript and `/manifest.webmanifest` returns the manifest.
+5. Install/open on iPhone, wait for offline-ready feedback, then test offline
+   reopening, Set entry/resume, and JSON download/file selection before regular use.
+
+The SPA rewrite preserves existing static files. The service worker, HTML fallback,
+and manifest revalidate; hashed assets can be cached immutably. `build/` is generated
+and should not be committed. Netlify browser tests are separate from the build gate:
+run `npm run test:e2e` locally against the production build before releasing.
+
+Choose the final production origin before entering important data. Local data on
+localhost, a deploy preview, a `netlify.app` address, and a custom domain is separate.
+Use Export/Import to move data; changing the hosted URL does not migrate it.
+
+Reference: [Netlify's static SvelteKit setup](https://docs.netlify.com/build/frameworks/framework-setup-guides/sveltekit/),
+[Node/dependency configuration](https://docs.netlify.com/build/configure-builds/manage-dependencies/),
+and [SPA rewrite rules](https://docs.netlify.com/manage/routing/redirects/rewrites-proxies/).
 
 ## Compatibility decisions and documentation discrepancies
 

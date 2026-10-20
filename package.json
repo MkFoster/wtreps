@@ -13,6 +13,7 @@
     "prepare": "svelte-kit sync",
     "dev": "vite dev",
     "build": "vite build",
+    "verify": "npm run lint && npm run check && npm test && npm run build",
     "preview": "sirv build --single 200.html --host 127.0.0.1 --port 4173",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "lint": "prettier --check .",

@@ -1,19 +1,31 @@
 [build]
-  command = "npm run build"
+  command = "npm run verify"
   publish = "build"
 
 [build.environment]
   NODE_VERSION = "22.23.3"
+  NPM_FLAGS = "--include=dev"
 
 [[redirects]]
   from = "/*"
   to = "/200.html"
   status = 200
+  force = false
 
 [[headers]]
   for = "/sw.js"
   [headers.values]
     Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/manifest.webmanifest"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/_app/immutable/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
   for = "/200.html"
